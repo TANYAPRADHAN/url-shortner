@@ -300,6 +300,27 @@ body {
   box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.18);
 }
 
+.custom-wrapper {
+  margin-top: 0.05rem;
+}
+
+.input-prefix {
+  position: absolute;
+  left: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--clr-accent);
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  font-family: var(--font);
+}
+
+.custom-alias-input {
+  padding-left: 5.25rem;
+  font-size: 0.925rem;
+}
+
 .shorten-btn {
   position: relative;
   display: flex;

@@ -194,7 +194,7 @@ async function incrementVisitors() {
     const doc = await VisitorModel.findOneAndUpdate(
       { counter_id: 'main' },
       { $inc: { count: 1 } },
-      { upsert: true, new: true }
+      { upsert: true, returnDocument: 'after' }
     );
     return doc ? doc.count : 1;
   } else {

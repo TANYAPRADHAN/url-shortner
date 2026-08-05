@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
 
@@ -54,6 +54,22 @@
             aria-label="Enter URL to shorten"
           />
         </div>
+        
+        <!-- Custom Alias (Optional) -->
+        <div class="input-wrapper custom-wrapper">
+          <span class="input-prefix">snip.ly/</span>
+          <input
+            id="custom-alias-input"
+            type="text"
+            class="url-input custom-alias-input"
+            placeholder="custom-backhalf (optional)"
+            autocomplete="off"
+            spellcheck="false"
+            maxlength="30"
+            aria-label="Enter optional custom short alias"
+          />
+        </div>
+
         <button id="shorten-btn" type="submit" class="shorten-btn">
           <span class="btn-text">Shorten It</span>
           <span class="btn-icon">→</span>
@@ -109,6 +125,6 @@
   <!-- Toast notification -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

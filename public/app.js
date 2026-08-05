@@ -5,6 +5,7 @@
 
 const form        = document.getElementById('shorten-form');
 const urlInput    = document.getElementById('url-input');
+const customAliasInput = document.getElementById('custom-alias-input');
 const shortenBtn  = document.getElementById('shorten-btn');
 const errorMsg    = document.getElementById('error-msg');
 const resultCard  = document.getElementById('result-card');
@@ -144,6 +145,8 @@ form.addEventListener('submit', async (e) => {
   clearError();
 
   const raw = urlInput.value.trim();
+  const customAlias = customAliasInput ? customAliasInput.value.trim() : '';
+
   if (!raw) {
     showError('Please enter a URL.');
     urlInput.focus();
@@ -153,10 +156,15 @@ form.addEventListener('submit', async (e) => {
   setLoading(true);
 
   try {
+    const payload = { url: raw };
+    if (customAlias) {
+      payload.customCode = customAlias;
+    }
+
     const res = await fetch('/api/shorten', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url: raw }),
+      body: JSON.stringify(payload),
     });
 
     const data = await res.json();
@@ -176,6 +184,7 @@ form.addEventListener('submit', async (e) => {
     }
 
     urlInput.value = '';
+    if (customAliasInput) customAliasInput.value = '';
 
   } catch (err) {
     showError('Network error — is the server running?');
