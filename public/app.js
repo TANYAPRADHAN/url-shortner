@@ -223,3 +223,34 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     // Silently fail — visitor count is non-critical
   }
 })();
+
+// ─── Theme Toggle Logic ───────────────────────────────────────
+const themeToggleBtn = document.getElementById('theme-toggle');
+const themeIcon      = document.getElementById('theme-icon');
+const themeLabel     = document.getElementById('theme-label');
+const THEME_KEY      = 'sniply_theme';
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  if (theme === 'light') {
+    if (themeIcon) themeIcon.textContent = '☀️';
+    if (themeLabel) themeLabel.textContent = 'Light';
+  } else {
+    if (themeIcon) themeIcon.textContent = '🌙';
+    if (themeLabel) themeLabel.textContent = 'Dark';
+  }
+}
+
+// Load saved theme or default to dark
+const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+applyTheme(savedTheme);
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(THEME_KEY, newTheme);
+    applyTheme(newTheme);
+    showToast(newTheme === 'light' ? '☀️ Switched to Light Theme' : '🌙 Switched to Dark Theme');
+  });
+}
