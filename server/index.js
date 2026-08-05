@@ -41,10 +41,29 @@ app.use(async (req, res, next) => {
   next();
 });
 
-// Start local server if not running as a Vercel serverless function
+const os = require('os');
+
+// Helper to get local network IP address
+function getNetworkIp() {
+  const interfaces = os.networkInterfaces();
+  for (const name of Object.keys(interfaces)) {
+    for (const iface of interfaces[name]) {
+      if (iface.family === 'IPv4' && !iface.internal) {
+        return iface.address;
+      }
+    }
+  }
+  return '127.0.0.1';
+}
+
+// Start server if not running as a Vercel serverless function
 if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`\n🚀  URL Shortener running at http://localhost:${PORT}\n`);
+  const HOST = '0.0.0.0';
+  app.listen(PORT, HOST, () => {
+    const netIp = getNetworkIp();
+    console.log(`\n🚀  URL Shortener Live Server Running!`);
+    console.log(`  ➜ Local:   http://localhost:${PORT}`);
+    console.log(`  ➜ Network: http://${netIp}:${PORT}\n`);
   });
 }
 

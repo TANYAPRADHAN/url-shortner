@@ -91,9 +91,17 @@ async function initDb() {
   return sqliteDb;
 }
 
+// Ensure DB initialized before operations
+async function ensureDb() {
+  if (!isMongo && !sqliteDb) {
+    await initDb();
+  }
+}
+
 // ─── Database Operations (Support both MongoDB & SQLite) ──────────────────────
 
 async function findByCode(code) {
+  await ensureDb();
   if (isMongo) {
     const doc = await UrlModel.findOne({ short_code: code }).lean();
     if (!doc) return null;
@@ -117,6 +125,7 @@ async function findByCode(code) {
 }
 
 async function findByUrl(url) {
+  await ensureDb();
   if (isMongo) {
     const doc = await UrlModel.findOne({ original_url: url }).lean();
     if (!doc) return null;
@@ -140,6 +149,7 @@ async function findByUrl(url) {
 }
 
 async function insertUrl(originalUrl, shortCode) {
+  await ensureDb();
   if (isMongo) {
     await UrlModel.create({
       original_url: originalUrl,
@@ -152,6 +162,7 @@ async function insertUrl(originalUrl, shortCode) {
 }
 
 async function incrementClicks(code) {
+  await ensureDb();
   if (isMongo) {
     await UrlModel.updateOne({ short_code: code }, { $inc: { click_count: 1 } });
   } else {
@@ -161,6 +172,7 @@ async function incrementClicks(code) {
 }
 
 async function getVisitorCount() {
+  await ensureDb();
   if (isMongo) {
     const doc = await VisitorModel.findOne({ counter_id: 'main' }).lean();
     return doc ? doc.count : 0;
@@ -177,6 +189,7 @@ async function getVisitorCount() {
 }
 
 async function incrementVisitors() {
+  await ensureDb();
   if (isMongo) {
     const doc = await VisitorModel.findOneAndUpdate(
       { counter_id: 'main' },
