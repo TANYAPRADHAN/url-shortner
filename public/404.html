@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Link Not Found · Snip.ly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .not-found-card {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .not-found-emoji { font-size: 4rem; margin-bottom: 1rem; }
+    .not-found-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .not-found-sub   { color: var(--clr-muted); margin-bottom: 2rem; }
+    .go-home {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 0.85rem;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .go-home:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(139,92,246,0.45);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="page-wrapper">
+    <header class="site-header">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">snip<span class="logo-accent">.ly</span></span>
+      </div>
+    </header>
+    <div class="main-card glass not-found-card">
+      <div class="not-found-emoji">🔍</div>
+      <h1 class="not-found-title">Link Not Found</h1>
+      <p class="not-found-sub">This short code doesn't exist or may have been mistyped.</p>
+      <a href="/" class="go-home">← Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>

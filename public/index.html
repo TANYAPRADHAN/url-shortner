@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snip.ly — Shorten Your Links Instantly</title>
+  <meta name="description" content="Snip.ly is a fast, elegant URL shortener. Paste any long link and get a sleek short URL in one click." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2" />
+</head>
+<body>
+
+  <!-- Animated background orbs -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <div class="page-wrapper">
+
+    <!-- ── Header ─────────────────────────────────────────── -->
+    <header class="site-header">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">snip<span class="logo-accent">.ly</span></span>
+      </div>
+      <p class="tagline">Shorten. Share. Track.</p>
+    </header>
+
+    <!-- ── Main Card ───────────────────────────────────────── -->
+    <main class="main-card glass">
+
+      <h1 class="card-title">Make your link <span class="gradient-text">unforgettable</span></h1>
+      <p class="card-subtitle">Paste any long URL below and get a sleek short link instantly.</p>
+
+      <!-- Input form -->
+      <form id="shorten-form" class="shorten-form" novalidate>
+        <div class="input-wrapper">
+          <span class="input-icon">🔗</span>
+          <input
+            id="url-input"
+            type="url"
+            class="url-input"
+            placeholder="https://your-very-long-url.com/goes/here"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Enter URL to shorten"
+          />
+        </div>
+        <button id="shorten-btn" type="submit" class="shorten-btn">
+          <span class="btn-text">Shorten It</span>
+          <span class="btn-icon">→</span>
+          <span class="btn-loader" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <!-- Error message -->
+      <div id="error-msg" class="error-msg" role="alert" aria-live="polite"></div>
+
+      <!-- Result card (hidden until first use) -->
+      <div id="result-card" class="result-card hidden" aria-live="polite">
+        <div class="result-label">Your short link is ready ✨</div>
+        <div class="result-row">
+          <a id="short-url-link" class="short-url-link" href="#" target="_blank" rel="noopener noreferrer"></a>
+          <button id="copy-btn" class="copy-btn" aria-label="Copy short URL to clipboard">
+            <span class="copy-icon">📋</span>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <div class="original-url-row">
+          <span class="original-label">↳ Original:</span>
+          <span id="original-url-display" class="original-url-display"></span>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ── Recent Links ────────────────────────────────────── -->
+    <section id="recent-section" class="recent-section hidden">
+      <h2 class="recent-title">Recent Links</h2>
+      <ul id="recent-list" class="recent-list"></ul>
+    </section>
+
+    <!-- ── Footer ─────────────────────────────────────────── -->
+    <footer class="site-footer">
+      <div class="footer-visitors">
+        <span class="footer-visitor-dot"></span>
+        <span id="visitor-count" class="footer-visitor-count">—</span>
+        <span class="footer-visitor-label">visitors</span>
+      </div>
+      <div class="footer-divider"></div>
+      <p class="footer-copy">
+        &copy; <span id="footer-year"></span> Snip.ly &nbsp;·&nbsp; All rights reserved
+      </p>
+      <p class="footer-credit">
+        Made with <span class="footer-heart">♥</span> by <strong>Tanya Pradhan</strong>
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js?v=2"></script>
+</body>
+</html>
